@@ -50,7 +50,6 @@
                 async:false,
                 success:function (data) {
                     var nicknameCheck = /^[a-zA-Z][a-zA-Z0-9_]{5,11}$/;
-                    console.log(data);
                     if($("#userNickname").val() == ""){
                         console.log("昵称不能为空");
                         result = false;

@@ -32,17 +32,7 @@ public class UserController {
         String ID= users.getUserID();
         String Password =users.getUserPassword();
         String NickName =users.getUserNickname();
-//        System.out.println("id="+ID);
-//        System.out.println("pwd="+Password);
-//        System.out.println("nickname"+NickName);
-        if(ID == null || Password == null || NickName == null)return "register";
-        else if(userService.checkUserByID(ID)){
-            return "register";
-        }
-        else if(userService.checkUserByNickname(NickName)){
-            return "register";
-        }
-        else if(!userService.checkUserByIDandPasswordandNickname(ID,Password,NickName)){
+        if(!userService.checkUserByIDandPasswordandNickname(ID,Password,NickName)){
             userService.addUser(users);
             return "redirect:login";
         }
@@ -69,27 +59,31 @@ public class UserController {
         response.getWriter().print(msg);
     }
 
-
     @RequestMapping("/login")
     public String login(Model model){
         return "login";
     }
 
     @RequestMapping("/toLogin")
-    public String toLogin(String ID,String Password,Model model){
-        String msg="";
-        if(ID == null || Password == null)return "login";
-        else if(!userService.checkUserByID(ID)){
-            msg = "notExists";
-            return "login";
-        }
-        else if(userService.checkUserByIDandPassword(ID,Password)){
-            msg = "error";
+    public String toLogin(String ID,String Password,HttpServletResponse response,Model model) throws IOException {
+        if(userService.checkUserByIDandPassword(ID,Password)){
             return "redirect:homePage";
         }
         else {
             return "login";
         }
+    }
+
+    @RequestMapping("/checkLogin")
+    public void checkLogin(String ID,String Password,HttpServletResponse response,Model model) throws IOException {
+        String msg="";
+        if(!userService.checkUserByID(ID)){
+            msg="notExists";
+        }
+        else if(!userService.checkUserByIDandPassword(ID,Password)){
+            msg="informationError";
+        }
+        response.getWriter().print(msg);
     }
 
     @RequestMapping("/homePage")
