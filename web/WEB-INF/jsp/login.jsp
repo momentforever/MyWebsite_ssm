@@ -11,7 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-    <form action="${pageContext.request.contextPath}/user/login" method="POST">
+    <form action="${pageContext.request.contextPath}/user/toLogin" method="POST">
 
         账户：<input name="ID"><br>
         密码: <input name="Password"><br>

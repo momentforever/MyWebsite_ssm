@@ -44,7 +44,7 @@ public class UserController {
         }
         else if(!userService.checkUserByIDandPasswordandNickname(ID,Password,NickName)){
             userService.addUser(users);
-            return "login";
+            return "redirect:login";
         }
         else {
             return "register";
@@ -70,18 +70,21 @@ public class UserController {
     }
 
 
-
-
     @RequestMapping("/login")
-    public String login(String ID,String Password,Model model){
+    public String login(Model model){
+        return "login";
+    }
+
+    @RequestMapping("/toLogin")
+    public String toLogin(String ID,String Password,Model model){
         String msg="";
         if(ID == null || Password == null)return "login";
         else if(!userService.checkUserByID(ID)){
-            msg = "不存在的账户";
+            msg = "notExists";
             return "login";
         }
         else if(userService.checkUserByIDandPassword(ID,Password)){
-            msg = "账户或密码错误";
+            msg = "error";
             return "redirect:homePage";
         }
         else {
@@ -93,8 +96,5 @@ public class UserController {
     public String showHomePage(Model model){
         return "homePage";
     }
-
-
-
 
 }
