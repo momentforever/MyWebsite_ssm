@@ -20,7 +20,6 @@
                 async:false,
                 success:function (data) {
                     var IDCheck = /^[a-zA-Z][a-zA-Z0-9_]{5,11}$/;
-                    console.log(data);
                     if($("#userID").val() == ""){
                         console.log("用户名不能为空");
                         result = false;

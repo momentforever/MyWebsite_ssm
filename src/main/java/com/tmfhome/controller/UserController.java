@@ -2,17 +2,13 @@ package com.tmfhome.controller;
 
 import com.tmfhome.pojo.Users;
 import com.tmfhome.service.UserService;
-import org.apache.ibatis.jdbc.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.web.bind.annotation.ResponseBody;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/user")
@@ -42,21 +38,25 @@ public class UserController {
     }
 
     @RequestMapping("/checkID")
-    public void checkID(String ID, HttpServletResponse response) throws IOException {
+    @ResponseBody
+    public String checkID(String ID){
         String msg="";
         if(userService.checkUserByID(ID)){
             msg="exists";
         }
-        response.getWriter().print(msg);
+        //response.getWriter().print(msg);
+        return msg;
     }
 
     @RequestMapping("/checkNickname")
-    public void checkNickname(String nickname, HttpServletResponse response) throws IOException {
+    @ResponseBody
+    public String checkNickname(String nickname){
         String msg="";
         if(userService.checkUserByNickname(nickname)){
             msg="exists";
         }
-        response.getWriter().print(msg);
+        //response.getWriter().print(msg);
+        return msg;
     }
 
     @RequestMapping("/login")
@@ -65,8 +65,10 @@ public class UserController {
     }
 
     @RequestMapping("/toLogin")
-    public String toLogin(String ID,String Password,HttpServletResponse response,Model model) throws IOException {
-        if(userService.checkUserByIDandPassword(ID,Password)){
+    public String toLogin(String userID, String userPassword,HttpSession session, Model model){
+        if(userService.checkUserByIDandPassword(userID,userPassword)){
+            session.setAttribute("ID",userID);
+            session.setAttribute("PWD",userPassword);
             return "redirect:homePage";
         }
         else {
@@ -75,7 +77,8 @@ public class UserController {
     }
 
     @RequestMapping("/checkLogin")
-    public void checkLogin(String ID,String Password,HttpServletResponse response,Model model) throws IOException {
+    @ResponseBody
+    public String checkLogin(String ID,String Password,Model model){
         String msg="";
         if(!userService.checkUserByID(ID)){
             msg="notExists";
@@ -83,11 +86,15 @@ public class UserController {
         else if(!userService.checkUserByIDandPassword(ID,Password)){
             msg="informationError";
         }
-        response.getWriter().print(msg);
+        //response.getWriter().print(msg);
+        return msg;
     }
 
+
     @RequestMapping("/homePage")
-    public String showHomePage(Model model){
+    public String homePage(HttpSession session, Model model){
+        String PWD= (String) session.getAttribute("PWD");
+        //System.out.println(PWD);
         return "homePage";
     }
 

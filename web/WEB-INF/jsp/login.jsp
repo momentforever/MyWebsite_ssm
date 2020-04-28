@@ -48,10 +48,10 @@
                         result=false;
                     }
 
-                    console.log(data);
                 }
             })
-
+            //调试用
+            //return false;
             return result;
         }
     </script>
