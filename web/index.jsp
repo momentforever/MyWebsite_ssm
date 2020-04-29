@@ -13,6 +13,7 @@
   <body>
   <a href="${pageContext.request.contextPath}/user/login">login</a><br>
   <a href="${pageContext.request.contextPath}/user/register">register</a><br>
-  <a href="${pageContext.request.contextPath}/user/homePage">homePage</a>
+  <a href="${pageContext.request.contextPath}/user/homePage">homePage</a><br>
+  <a href="${pageContext.request.contextPath}/sars/china">chinasars</a><br>
   </body>
 </html>

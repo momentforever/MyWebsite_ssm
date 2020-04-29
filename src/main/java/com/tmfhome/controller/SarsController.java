@@ -21,12 +21,12 @@ public class SarsController {
 
     @RequestMapping("/china")
     public String china(Model model){
-        List<Sarschina> sarschinas = new ArrayList<Sarschina>();
-        sarschinas = sarsService.queryAll();
-
-        for(Sarschina tmp : sarschinas){
-            System.out.println(tmp.toString());
-        }
+        List<Sarschina> list = new ArrayList<Sarschina>();
+        list = sarsService.queryAll();
+        model.addAttribute("list",list);
+//        for(Sarschina tmp : sarschinas){
+//            System.out.println(tmp.toString());
+//        }
 
         return "china";
     }
