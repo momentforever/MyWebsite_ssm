@@ -22,6 +22,7 @@
 <!--    <select id="queryAllUser" resultType="Users">-->
 <!--        select * from ssmbuild.users-->
 <!--    </select>-->
+
     <insert id="addUser" parameterType="Users">
         insert into ssmbuild.users(userID,userNickname,userPassword)
         value (#{userID},#{userNickname},#{userPassword});

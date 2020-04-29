@@ -11,6 +11,10 @@
     <title>Title</title>
 </head>
 <body>
-    Success
+    <%
+        String ID= (String) session.getAttribute("ID");
+        String PWD= (String) session.getAttribute("PWD");
+        out.print(ID+"<br>"+PWD+"<br>");
+    %>
 </body>
 </html>

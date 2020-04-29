@@ -11,6 +11,8 @@
     <title>$Title$</title>
   </head>
   <body>
-  $END$
+  <a href="${pageContext.request.contextPath}/user/login">login</a><br>
+  <a href="${pageContext.request.contextPath}/user/register">register</a><br>
+  <a href="${pageContext.request.contextPath}/user/homePage">homePage</a>
   </body>
 </html>

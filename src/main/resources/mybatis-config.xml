@@ -8,5 +8,6 @@
     </typeAliases>
     <mappers>
         <mapper class="com.tmfhome.dao.UserMapper"/>
+        <mapper class="com.tmfhome.dao.SarsMapper"/>
     </mappers>
 </configuration>

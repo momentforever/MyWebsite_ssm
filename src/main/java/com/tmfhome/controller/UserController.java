@@ -22,6 +22,22 @@ public class UserController {
         return "register";
     }
 
+    @RequestMapping("/login")
+    public String login(Model model){
+        return "login";
+    }
+
+    @RequestMapping("/homePage")
+    public String homePage(HttpSession session, Model model){
+        String ID= (String) session.getAttribute("ID");
+        String PWD= (String) session.getAttribute("PWD");
+        //System.out.println(ID);
+        //System.out.println(PWD);
+        return "homePage";
+    }
+
+
+
     @RequestMapping("/toRegister")
     public String toRegister(Users users,Model model){
         String msg="";
@@ -59,10 +75,7 @@ public class UserController {
         return msg;
     }
 
-    @RequestMapping("/login")
-    public String login(Model model){
-        return "login";
-    }
+
 
     @RequestMapping("/toLogin")
     public String toLogin(String userID, String userPassword,HttpSession session, Model model){
@@ -88,14 +101,6 @@ public class UserController {
         }
         //response.getWriter().print(msg);
         return msg;
-    }
-
-
-    @RequestMapping("/homePage")
-    public String homePage(HttpSession session, Model model){
-        String PWD= (String) session.getAttribute("PWD");
-        //System.out.println(PWD);
-        return "homePage";
     }
 
 }
