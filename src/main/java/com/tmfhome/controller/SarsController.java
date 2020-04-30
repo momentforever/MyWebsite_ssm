@@ -1,5 +1,6 @@
 package com.tmfhome.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.tmfhome.pojo.Sarschina;
 import com.tmfhome.service.SarsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,8 @@ public class SarsController {
     public String china(Model model){
         List<Sarschina> list = new ArrayList<Sarschina>();
         list = sarsService.queryAll();
-        model.addAttribute("list",list);
+        model.addAttribute("list",JSON.toJSONString(list));
+        model.addAttribute("listjava",list);
 //        for(Sarschina tmp : sarschinas){
 //            System.out.println(tmp.toString());
 //        }
