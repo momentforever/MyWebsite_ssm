@@ -7,7 +7,7 @@
         <package name="com.tmfhome.pojo"/>
     </typeAliases>
     <mappers>
-        <mapper class="com.tmfhome.dao.UserMapper"/>
         <mapper class="com.tmfhome.dao.SarsMapper"/>
+        <mapper class="com.tmfhome.dao.UserMapper"/>
     </mappers>
 </configuration>
