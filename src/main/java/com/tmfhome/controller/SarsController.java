@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class SarsController {
         list = sarsService.queryAll();
         model.addAttribute("list",JSON.toJSONString(list));
         model.addAttribute("listjava",list);
-//        for(Sarschina tmp : sarschinas){
+//        for(Sarschina tmp : list){
 //            System.out.println(tmp.toString());
 //        }
 
@@ -34,29 +35,34 @@ public class SarsController {
     }
 
     @RequestMapping("/checkchina")
-    public String checkChina(Model model){
-        List<Sarschina> list = new ArrayList<Sarschina>();
-        list = sarsService.queryAll();
-        model.addAttribute("listjava",list);
-
-        return "checkchina";
+    public String checkChina(Model model, HttpSession session){
+        if((String) session.getAttribute("ID") != null &&
+                (String) session.getAttribute("PWD") != null) {
+            List<Sarschina> list = new ArrayList<Sarschina>();
+            list = sarsService.queryAll();
+            model.addAttribute("listjava", list);
+            return "checkchina";
+        }
+        else return "redirect:/sars/china";
     }
 
     @RequestMapping("/updatechina")
     public String updateChina(String mainland,Model model){
-        List<Sarschina> list = new ArrayList<Sarschina>();
-        list = sarsService.queryByMainland(mainland);
-        Sarschina sars=list.get(0);
-        //Sarschina sars= (Sarschina) sarsService.queryByMainland(mainland);
-        model.addAttribute("sars",sars);
-        //int i = sarsService.updateChina(mainland);
-        return "updatechina";
+        if(mainland!=null) {
+            List<Sarschina> list = new ArrayList<Sarschina>();
+            list = sarsService.queryByMainland(mainland);
+            Sarschina sars = list.get(0);
+            model.addAttribute("sars", sars);
+            return "updatechina";
+        }
+        else return "redirect:/sars/checkchina";
     }
 
     @RequestMapping("/toupdatechina")
     public String toUpdateChina(Sarschina sarschina){
-        System.out.println("update=>"+sarschina);
+        //System.out.println("update=>"+sarschina);
         int i = sarsService.updateChina(sarschina);
+
         return "redirect:/sars/checkchina";
     }
 }

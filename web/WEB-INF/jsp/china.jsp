@@ -19,11 +19,27 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
 
     <title>Title</title>
-
+    <script>
+        function adminCheck() {
+            var ID=<%=(String) session.getAttribute("ID")%>;
+            var PWD=<%=(String) session.getAttribute("PWD")%>;
+            if(ID!=null && PWD!=null){
+                return true;
+            }
+            else {
+                alert("请先登录");
+                return false;
+            }
+        }
+    </script>
 
 </head>
 <body>
-
+    <div>
+        <a href="${pageContext.request.contextPath}/user/login">登录</a>
+        <a href="${pageContext.request.contextPath}/user/register">注册</a>
+        <a href="${pageContext.request.contextPath}/sars/checkchina" onclick="return adminCheck()">修改数据</a>
+    </div>
     <div class="chart-container" style="position: relative; height:60vh; width:60vw">
         <canvas id="myChart"></canvas>
     </div>

@@ -46,7 +46,7 @@ public class UserController {
         String NickName =users.getUserNickname();
         if(!userService.checkUserByIDandPasswordandNickname(ID,Password,NickName)){
             userService.addUser(users);
-            return "redirect:login";
+            return "redirect:/user/login";
         }
         else {
             return "register";
@@ -82,7 +82,7 @@ public class UserController {
         if(userService.checkUserByIDandPassword(userID,userPassword)){
             session.setAttribute("ID",userID);
             session.setAttribute("PWD",userPassword);
-            return "redirect:homePage";
+            return "redirect:/sars/china";
         }
         else {
             return "login";
