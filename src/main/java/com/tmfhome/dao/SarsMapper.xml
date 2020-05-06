@@ -17,4 +17,5 @@
         set cases=#{cases},deaths=#{deaths},serious=#{serious},critical=#{critical},recovered=#{recovered}
         where mainland=#{mainland}
     </update>
+
 </mapper>
