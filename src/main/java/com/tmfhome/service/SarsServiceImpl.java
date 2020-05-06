@@ -18,4 +18,14 @@ public class SarsServiceImpl implements SarsService {
     public List<Sarschina> queryAll() {
         return sarsMapper.queryAll();
     }
+
+    @Override
+    public int updateChina(Sarschina sarschina) {
+        return sarsMapper.updateChina(sarschina);
+    }
+
+    @Override
+    public List<Sarschina> queryByMainland(String mainland) {
+        return sarsMapper.queryByMainland(mainland);
+    }
 }

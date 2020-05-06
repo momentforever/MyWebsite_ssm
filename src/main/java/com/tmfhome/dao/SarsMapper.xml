@@ -5,4 +5,14 @@
     <select id="queryAll" resultType="Sarschina">
         select * from ssmbuild.sarschina
     </select>
+
+    <select id="queryByMainland" resultType="Sarschina">
+        select * from ssmbuild.sarschina where mainland = #{mainland}
+    </select>
+
+    <update id="updateChina">
+        update ssmbuild.sarschina
+        set cases=#{cases},deaths=#{deaths},serious=#{serious},critical=#{critical},recovered=#{recovered}
+        where mainland=#{mainland}
+    </update>
 </mapper>

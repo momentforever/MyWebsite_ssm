@@ -32,4 +32,31 @@ public class SarsController {
 
         return "china";
     }
+
+    @RequestMapping("/checkchina")
+    public String checkChina(Model model){
+        List<Sarschina> list = new ArrayList<Sarschina>();
+        list = sarsService.queryAll();
+        model.addAttribute("listjava",list);
+
+        return "checkchina";
+    }
+
+    @RequestMapping("/updatechina")
+    public String updateChina(String mainland,Model model){
+        List<Sarschina> list = new ArrayList<Sarschina>();
+        list = sarsService.queryByMainland(mainland);
+        Sarschina sars=list.get(0);
+        //Sarschina sars= (Sarschina) sarsService.queryByMainland(mainland);
+        model.addAttribute("sars",sars);
+        //int i = sarsService.updateChina(mainland);
+        return "updatechina";
+    }
+
+    @RequestMapping("/toupdatechina")
+    public String toUpdateChina(Sarschina sarschina){
+        System.out.println("update=>"+sarschina);
+        int i = sarsService.updateChina(sarschina);
+        return "redirect:/sars/checkchina";
+    }
 }
