@@ -67,7 +67,7 @@
     <form action="${pageContext.request.contextPath}/user/toLogin" method="POST">
         账户：<input name="userID" id="userID"><br>
         密码: <input name="userPassword"id="userPassword"><br>
-        <p id="notice"></p>
+        <p id="notice">显示信息</p>
         <button type="submit" onclick="return checkLogin()">提交</button>
     </form>
 </body>

@@ -140,13 +140,13 @@
 <body>
     <form action="${pageContext.request.contextPath}/user/toRegister" method="POST">
         账户：<input name="userID" id="userID" onblur="checkID()"><br>
-        <p id="noticeID"></p><br>
+        <p id="noticeID">显示信息</p><br>
         昵称：<input name="userNickname" id="userNickname" onblur="checkNickname()"><br>
-        <p id="noticeNickname"></p><br>
+        <p id="noticeNickname">显示信息</p><br>
         密码: <input name="userPassword"id="userPassword" onblur="checkPassword()"><br>
-        <p id="noticePassword"></p><br>
+        <p id="noticePassword">显示信息</p><br>
         确认密码：<input name="confirmUserPassword" id="confirmUserPassword" onblur="checkConfirmPassword()"><br>
-        <p id="noticeConfirmPassword"></p><br>
+        <p id="noticeConfirmPassword">显示信息</p><br>
         <button type="submit" onclick="return checkRegister()">提交</button>
     </form>
 </body>
