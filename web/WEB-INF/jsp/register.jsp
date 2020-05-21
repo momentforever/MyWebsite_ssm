@@ -1,14 +1,11 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: lzt11
-  Date: 2020/4/23
-  Time: 14:43
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
     <script src="${pageContext.request.contextPath}/statics/js/jquery-3.4.1.js"></script>
     <script>
         function checkID(){
@@ -131,23 +128,166 @@
             let pwd = checkPassword();
             let confrimPWD=checkConfirmPassword();
              if(id&&nickname&&pwd&&confrimPWD){
+                 $("#submit").submit();
                  return true;
              }
              else return false;
         }
+
+        function toLogin() {
+            window.location.replace("${pageContext.request.contextPath}/user/login");
+        }
     </script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+ 
+        html{
+            height: 100%;
+        }
+ 
+        body{
+            background-image: linear-gradient(to bottom right,rgb(85, 255, 255),rgb(255, 170, 255));
+        }
+ 
+        body .login-container{
+            width: 600px;
+            height: 510px;
+            margin: 0 auto;
+            margin-top: 10%;
+            border-radius: 15px;
+            box-shadow: 0 10px 50px 0 rgb(0, 0, 255);
+            background-color: rgb(85, 0, 255);
+        }
+ 
+        body .login-container .left-container{
+            display: inline-block;
+            width: 330px;
+            border-top-left-radius: 15px;
+            border-bottom-left-radius: 15px;
+            padding: 60px;
+            background-image: linear-gradient(to bottom right,rgb(85, 85, 255),rgb(0, 85, 255));
+        }
+ 
+        body .login-container .left-container .title{
+            color: #00ff7f;
+            font-size: 18px;
+            font-weight: 200;
+        }
+ 
+        body .login-container .left-container .title span{
+            border-bottom: 3px solid rgb(237,221,22);
+        }
+ 
+        body .login-container .left-container .input-container{
+            padding: 10px 0;
+        }
+ 
+        body .login-container .left-container .input-container input{
+            border: 0;
+            background: none;
+            outline: 0;
+            color: #fff;
+            margin: 20px 0;
+            padding: 5px 0;
+            border-bottom: 1px solid rgb(0, 0, 0);
+            display: block;
+            transition: .2s;
+            width: 100%;
+        }
+ 
+        body .login-container .left-container .input-container input:hover{
+            border-bottom-color: #00ff7f;
+        }
+ 
+        body .login-container .left-container .message-container{
+            font-size: 14px;
+            color:  rgb(199, 191, 219);
+            transition: .2s;
+            cursor: pointer;
+        }
+ 
+        body .login-container .left-container .message-container:hover{
+            color: #00ff7f;
+        }
+ 
+        ::-webkit-input-placeholder{
+            color: rgb(199, 191,219);
+        }
+ 
+        body .login-container .right-container{
+            width: 145px;
+            display: inline-block;
+            height: calc(100% - 120px);
+            height: 100%;
+            vertical-align: top;
+            padding: 60px 0;
+        }
+ 
+        body .login-container .right-container .regist-container{
+            text-align: center;
+            color: #00ff7f;
+            font-size: 18px;
+            font-weight: 200;
+        }
+ 
+        body .login-container .right-container .regist-container span{
+            border-bottom: 3px solid rgb(237,221,22);
+        
+        }
+ 
+        body .login-container .right-container .action-container{
+            font-size: 10px;
+            color: #00ff7f;
+            height: 70%;
+            position: relative;
+        }
+        body .login-container .right-container .action-container span{
+            border: 1px solid rgb(237,221,22);
+            padding: 10px;
+            display: inline-block;
+            line-height: 25px;
+            border-radius: 25px;
+            position: absolute;
+            bottom: 10px;
+            left: calc(72px - 25px);
+            transition: .2s;
+			cursor: pointer;
+        }
+ 
+        body .login-container .right-container .action-container span:hover{
+            background-color: rgb(237, 221, 22);
+            color: rgb(95,76,194);
+        }
+ 
+    </style>
 </head>
 <body>
-    <form action="${pageContext.request.contextPath}/user/toRegister" method="POST">
-        账户：<input name="userID" id="userID" onblur="checkID()"><br>
-        <p id="noticeID">显示信息</p><br>
-        昵称：<input name="userNickname" id="userNickname" onblur="checkNickname()"><br>
-        <p id="noticeNickname">显示信息</p><br>
-        密码: <input name="userPassword"id="userPassword" onblur="checkPassword()"><br>
-        <p id="noticePassword">显示信息</p><br>
-        确认密码：<input name="confirmUserPassword" id="confirmUserPassword" onblur="checkConfirmPassword()"><br>
-        <p id="noticeConfirmPassword">显示信息</p><br>
-        <button type="submit" onclick="return checkRegister()">提交</button>
-    </form>
+    <div class="login-container">
+        <div class="left-container">
+            <div class="title"><span>注册</span></div>
+            <div class="input-container">
+                <form id="submit" action="${pageContext.request.contextPath}/user/toRegister"  method="POST">
+                    <input name="userID" id="userID" onblur="checkID()" placeholder="昵称">
+                    <p id="noticeID"></p>
+                    <input name="userNickname" id="userNickname" onblur="checkNickname()" placeholder="用户名">
+                    <p id="noticeNickname"></p>
+                    <input name="userPassword"id="userPassword" onblur="checkPassword()" placeholder="密码">
+                    <p id="noticePassword"></p>
+                    <input name="confirmUserPassword" id="confirmUserPassword" onblur="checkConfirmPassword()" placeholder="确认密码">
+                    <p id="noticeConfirmPassword"></p>
+                </form>
+            </div>
+        </div>
+        <div class="right-container">
+            <div class="regist-container">
+                <span class="regist" onclick="toLogin()">登陆</span>
+            </div>
+            <div class="action-container">
+                <span onclick="return checkRegister()">提交</span>
+            </div>
+        </div>
+    </div>
 </body>
-</html>
