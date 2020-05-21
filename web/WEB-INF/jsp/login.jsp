@@ -203,7 +203,7 @@
                 <form action="${pageContext.request.contextPath}/user/toLogin" id="submit">
                     <input type="text" name="userID" id="userID" placeholder="用户名">
                     <input type="password" name="userPassword" id="userPassword" placeholder="密码">
-                    <p id="notice"></p>
+                    <p id="notice">&nbsp</p>
                 </form>
             </div>
         </div>

@@ -271,13 +271,13 @@
             <div class="input-container">
                 <form id="submit" action="${pageContext.request.contextPath}/user/toRegister"  method="POST">
                     <input name="userID" id="userID" onblur="checkID()" placeholder="昵称">
-                    <p id="noticeID"></p>
+                    <p id="noticeID">&nbsp</p>
                     <input name="userNickname" id="userNickname" onblur="checkNickname()" placeholder="用户名">
-                    <p id="noticeNickname"></p>
+                    <p id="noticeNickname">&nbsp</p>
                     <input name="userPassword"id="userPassword" onblur="checkPassword()" placeholder="密码">
-                    <p id="noticePassword"></p>
+                    <p id="noticePassword">&nbsp</p>
                     <input name="confirmUserPassword" id="confirmUserPassword" onblur="checkConfirmPassword()" placeholder="确认密码">
-                    <p id="noticeConfirmPassword"></p>
+                    <p id="noticeConfirmPassword">&nbsp</p>
                 </form>
             </div>
         </div>
